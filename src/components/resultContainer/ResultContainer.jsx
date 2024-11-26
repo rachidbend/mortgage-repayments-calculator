@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import CalculatorIllustration from './../../../public/images/illustration-empty.svg';
 import { useCalculator } from '../../contexts/AppContext';
+import { formatNumberWithCommas } from '../../helpers/helperFunctions';
 const StyledResultContainer = styled.div`
   background-color: var(--color-slate-900);
   border-radius: 0rem 2.2rem 2.2rem 8rem;
@@ -143,14 +144,16 @@ function ResultContainer() {
             <ResultsContainer>
               <ResultsHeading>Your monthly repayments</ResultsHeading>
               {/* Monthly payment result */}
-              <MonthlyResult>${monthlyPayment}</MonthlyResult>
+              <MonthlyResult>
+                $ {formatNumberWithCommas(monthlyPayment)}
+              </MonthlyResult>
 
               <LineDevider></LineDevider>
               <ResultsHeading>
                 Total you&apos;ll repay over the term
               </ResultsHeading>
               {/* Total payment result */}
-              <TotalResult>${totalPayment}</TotalResult>
+              <TotalResult>${formatNumberWithCommas(totalPayment)}</TotalResult>
             </ResultsContainer>
           </Container>
         </>

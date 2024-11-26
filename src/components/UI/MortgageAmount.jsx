@@ -8,6 +8,7 @@ import {
 } from './InputStyles';
 import { useState } from 'react';
 import { useCalculator } from '../../contexts/AppContext';
+import { formatNumberWithCommas } from '../../helpers/helperFunctions';
 
 const StyledMortgageAmount = styled.div`
   margin-bottom: 3.6rem;
@@ -51,12 +52,12 @@ function MortgageAmount() {
             setIsFocused(false);
           }}
           // Value and change handler props from the calculator context
-          value={amount !== 0 ? amount : ''}
+          value={amount !== 0 ? formatNumberWithCommas(amount) : ''}
           onChange={e => {
-            handleAmountChange(e.target.value);
+            handleAmountChange(e.target.value.replace(/,/g, ''));
           }}
           // Input type and id
-          type="number"
+          type="text"
           id="mortgage-amount"
         />
       </MortgageInputContainer>
